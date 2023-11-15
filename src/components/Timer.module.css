@@ -1,0 +1,60 @@
+.container {
+}
+
+.timerDisplay {
+  padding: clamp(1rem, 3vw, 3rem);
+  border-radius: 5px;
+
+  font-size: clamp(3rem, 7vw, 7rem);
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.userInput {
+  max-width: 350px;
+  width: 100%;
+  padding: 1rem;
+  font-size: 2rem;
+  text-align: center;
+
+  border: none;
+  border-radius: 5px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.userInputSubmit{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  background: green;
+}
+
+.userInputSubmit:hover {
+  transform: scale(1.1)
+}
+
+.userInputOverlay {
+  background: rgba(0, 0, 0, .5);
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+
+}

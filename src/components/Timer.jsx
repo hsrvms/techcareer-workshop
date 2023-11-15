@@ -5,6 +5,7 @@ const Timer = () => {
   const [initialTime, setInitialTime] = useState(180);
   const [time, setTime] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
+  const [isUserInputActive, setIsUserInputActive] = useState(false)
 
   useEffect(() => {
     let timer;
@@ -38,12 +39,20 @@ const Timer = () => {
   const handleReset = () => {
     setIsRunning(false);
     setTime(initialTime);
+    setIsUserInputActive(false)
   };
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setInitialTime(parseInt(inputValue, 10) || 0);
   };
+
+  const displayUserInput = () => {
+    setIsUserInputActive(true)
+  }
+  const hideUserInput = () => {
+    setIsUserInputActive(false)
+  }
 
   const formatTime = (seconds) => {
     const hours = Math.floor(seconds / 3600);
@@ -57,13 +66,23 @@ const Timer = () => {
 
   return (
     <div>
-      <input
-        type="number"
-        placeholder="Enter time in seconds"
-        value={initialTime}
-        onChange={handleInputChange}
-      />
-      <p className={styles.timerDisplay}>{formatTime(time)}</p>
+      {isUserInputActive && (
+        <div>
+          <input
+            className={styles.userInput}
+            type="number"
+            placeholder="Enter time in seconds"
+            value={initialTime}
+            onChange={handleInputChange}
+          />
+          <button onClick={handleReset} className={styles.userInputSubmit}>Done</button>
+          <div
+            className={styles.userInputOverlay}
+            onClick={hideUserInput}></div>
+        </div>
+
+      )}
+      <p className={styles.timerDisplay} onClick={displayUserInput}>{formatTime(time)}</p>
       <div className={styles.btnContainer}>
         <button onClick={handleStart}>Start</button>
         <button onClick={handlePause}>Pause</button>
